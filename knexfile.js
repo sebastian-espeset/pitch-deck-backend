@@ -32,10 +32,6 @@ module.exports = {
     ...sharedConfig,
     connection: process.env.DEV_DATABASE_URL,
   },
-  testing: {
-    ...sharedConfig,
-    connection: process.env.TESTING_DATABASE_URL,
-  },
   production: {
     ...sharedConfig,
     connection: process.env.DATABASE_URL,
