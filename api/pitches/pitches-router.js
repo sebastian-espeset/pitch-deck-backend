@@ -1,11 +1,11 @@
 const express = require("express");
 const multer = require("multer");
-const Pitches = require("./pitches-model");
 const router = express.Router();
+const { uploadFile } = require("../s3");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null,"./files");
+    cb(null, "./files");
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
@@ -14,21 +14,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
 router.get("/", (req, res) => {
-  Pitches.get()
-    .then((pitches) => {
-      res.status(200).json(pitches);
-    })
-    .catch((err) => {
-      res.status(400).json({ message: `Error puppy: ${err}` });
-    });
+  res.send(`hello bubblegum`);
 });
 
-router.post("/",upload.single('file'),(req,res)=>{
-  // console.log(req.file);
-  Pitches.insert(req.file)
-  res.send(`file successfully uploaded`)
-})
+router.post("/", upload.single("file"), async (req, res) => {
+  const file = req.file;
+  console.log(file);
+  const result = await uploadFile(file)
+  console.log(result)
+  res.send("success")
+});
 
 module.exports = router;
