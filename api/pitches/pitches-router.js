@@ -1,6 +1,5 @@
 const express = require("express");
 const multer = require("multer");
-
 const Pitches = require("./pitches-model");
 const router = express.Router();
 
@@ -15,18 +14,20 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
 router.get("/", (req, res) => {
   Pitches.get()
     .then((pitches) => {
       res.status(200).json(pitches);
     })
     .catch((err) => {
-      res.status(400).json({ message: `Error: ${err}` });
+      res.status(400).json({ message: `Error puppy: ${err}` });
     });
 });
 
 router.post("/",upload.single('file'),(req,res)=>{
-  console.log(req.file);
+  // console.log(req.file);
+  Pitches.insert(req.file)
   res.send(`file successfully uploaded`)
 })
 

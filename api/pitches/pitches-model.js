@@ -4,10 +4,12 @@ const get = ()=>{
     let query = db('pitches');
     return query
 };
+
 const insert = (pitch) =>{
-    return db('pitches')
-        .insert(pitch);
-    
+     db('pitches').insert(pitch)
+     .then(pitch=>{
+        console.log(pitch)
+     })
 };
 
 module.exports ={
