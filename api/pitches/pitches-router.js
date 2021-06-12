@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 router.get("/files/:key", (req, res) => {
   const key = req.params.key
@@ -20,7 +20,7 @@ router.get("/files/:key", (req, res) => {
   readStream.pipe(res)
 });
 
-router.post("/", upload.single("file"), async (req, res) => {
+router.post("/",  async (req, res) => {
   const file = req.file;
   console.log(file);
   const result = await uploadFile(file)
