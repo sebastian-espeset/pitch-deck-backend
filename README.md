@@ -1,5 +1,5 @@
 # Pitch deck backend
-- Uses Node.js and express to create a simple server with two routes. Performing a post request to "http://PORT/api/pitches" saves the file locally, and then forwards a post request to an amazon s3 bucket.
+- Uses Node.js and express to create a simple server with two routes. Performing a post request to */api/pitches* saves the file locally, and then forwards a post request to an amazon s3 bucket.
 - File is saved locally using the [multer](https://www.npmjs.com/package/multer) library. 
 - Once the upload is successfull, api sends a link to display the uploaded pdf
 - [Front-end repo](https://github.com/sebastian-espeset/pitch-deck-frontend.git) 
